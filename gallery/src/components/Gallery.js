@@ -7,7 +7,8 @@ class Gallery extends Component {
     var list = [];
     this.props.pictures.forEach((pic) => {
       list.push(
-        <Card url={pic.url} description={pic.info}/>
+        <Card url={pic.url} description={pic.info}
+          select={this.props.select} selected={this.props.selected}/>
       );
     });
     return list;

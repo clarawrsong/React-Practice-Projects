@@ -7,8 +7,12 @@ body {
 }
 
 img {
-  height: 250px;
+  height: 220px;
   border-radius: 10px;
+}
+
+img.selected {
+  height: 290px;
 }
 
 h1 {
@@ -17,6 +21,20 @@ h1 {
   position: relative;
   transform: translate(-50%, 0%);
   right:-50%;
+}
+
+input {
+  margin: 2px;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+button {
+  width: 50px;
+  margin: 3px auto;
+  padding: 5px;
+  border-radius: 7px;
+  background: #EBE5E0;
 }
 
 .list {
@@ -30,6 +48,7 @@ h1 {
   justify-content: center;
   list-style-type: none;
   margin: auto;
+  box-shadow: 0px -10px 25px #4c3f31;
   box-sizing: border-box;
   border-radius: 10px;
   border-top: 10px solid #99E0C2;
@@ -38,29 +57,26 @@ h1 {
   color: #726352;
 }
 
-input, button {
-  margin: 2px;
-}
-
 .input {
-  position: relative;
-  transform: translate(-50%, 0%);
-  right:-50%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   width: 200px;
 }
 
-.post {
+#post {
   margin: 10px;
   padding: 5px;
   padding-top: 20px;
+  box-shadow: 7px 7px 2px #EBE5E0;
+  border: 2px solid #F78E8D;
   border-radius: 10px;
+  box-sizing: border-box;
   background: #FECFD2;
 }
 
-.post.selected {
-  height: 300px;
+#post.selected {
+  background: #F78E8D;
 }
 
 #text {

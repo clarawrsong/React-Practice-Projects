@@ -8,10 +8,12 @@ class App extends Component {
     const localGallery = JSON.parse(localStorage.getItem('history'));
     this.state = {
       pictures: localGallery ? localGallery : [],
-      input: {url: '', info: ''}
+      input: {url: '', info: ''},
+      selected: ''
     };
 
     this.enterPicture = this.enterPicture.bind(this);
+    this.select = this.select.bind(this);
     this.handleURLChange = this.handleURLChange.bind(this);
     this.handleInfoChange = this.handleInfoChange.bind(this);
   }
@@ -23,6 +25,10 @@ class App extends Component {
     this.setState({pictures: newPictures});
     this.setInput({url: '', info: ''});
     this.save();
+  }
+
+  select(url, info) {
+    this.setState({selected: {url: url, info: info}})
   }
 
   handleURLChange(urlInput) {
@@ -50,11 +56,14 @@ class App extends Component {
       <div className="App">
         <h1>Gallery React Project</h1>
         <div className='input'>
-          <input type="text" onChange={this.handleURLChange} placeholder="Image url"></input>
-          <input type="text" onChange={this.handleInfoChange} placeholder="Title or short description"></input>
+          <input type="text" onChange={this.handleURLChange}
+            placeholder="Image url"></input>
+          <input type="text" onChange={this.handleInfoChange}
+            placeholder="Title or short description"></input>
           <button onClick={this.enterPicture}>Enter</button>
         </div>
-        <Gallery pictures={this.state.pictures}/>
+        <Gallery pictures={this.state.pictures} select={this.select}
+          selected={this.state.selected}/>
       </div>
     );
   }
