@@ -1,2 +1,4 @@
 # React-Practice-Projects
-Some projects from https://daveceddia.com/react-practice-projects/
+After finishing the JavaScript and React for Developers: Master the Essentials tutorial on Udemy at https://www.udemy.com/js-and-react-for-devs/learn/v4/content, I'm practicing React with some projects from https://daveceddia.com/react-practice-projects/
+Includes so far 
+ - Social Card
