@@ -54,7 +54,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Gallery React Project</h1>
+        <h1>Photo Gallery</h1>
         <div className='input'>
           <input type="text" onChange={this.handleURLChange}
             placeholder="Image url"></input>
