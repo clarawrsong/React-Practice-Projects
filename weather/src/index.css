@@ -3,3 +3,15 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+dl {
+  flex: auto;
+  justify-content: center;
+  display: flex;
+  padding: 5px;
+  border: 2px solid black;
+}
+
+#hourCard {
+  margin: 10px;
+}
