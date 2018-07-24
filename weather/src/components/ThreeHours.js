@@ -16,12 +16,13 @@ class ThreeHours extends Component {
     var tomorrow = this.props.hourly[this.props.startTom+1].time.day;
     return (
       <div>
+      <h2>{this.props.city}</h2>
         <dl id = 'todayHourly'>
-          <h2> {today} </h2>
+          <h3> {today} </h3>
           {this.renderDays(0, this.props.startTom)}
         </dl>
         <dl id = 'tomorrowHourly'>
-          <h2> {tomorrow} </h2>
+          <h3> {tomorrow} </h3>
           {this.renderDays(this.props.startTom, 9)}
         </dl>
       </div>

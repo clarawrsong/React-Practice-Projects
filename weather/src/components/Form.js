@@ -15,6 +15,3 @@ class Form extends Component {
 }
 
 export default Form;
-
-// <input type="text" placeholder="city, country"></input>
-// <button onClick={this.entered}>Enter</button>

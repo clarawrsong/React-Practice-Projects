@@ -7,10 +7,12 @@ class App extends Component {
 
   constructor() {
     super();
+    const lastVisit = localStorage.getItem('previous');
+    // alert('constructor')
     this.state = {
       weather: null,
       units: 'imperial',
-      city: '',
+      city: lastVisit ? lastVisit : '',
       input: ''
     };
 
@@ -22,7 +24,6 @@ class App extends Component {
     if (this.state.city === '') return;
     let tempUnit = this.state.units;
     let cityName = this.state.city;
-    console.log(cityName);
     let url = `https://api.openweathermap.org/data/2.5/forecast?appid=5e488f627103c54501b7ef81152218bf&q=${cityName}&units=${tempUnit}`;
     fetch(url)
       .then(r => {
@@ -31,7 +32,7 @@ class App extends Component {
       .then(j => {
         this.setWeather(j.list);
       })
-      .catch(error => console.log('error'));
+      .catch(error => alert('incorrect input'));
   };
 
   /* gets starting index position of the next day */
@@ -47,6 +48,9 @@ class App extends Component {
     return i;
   }
 
+  /* sets weather state (an array) according to data parameter
+  for each item in the array is a different hour (every 3 hours)
+  for each hour, sets the time, temp, icon, description, and rainfall */
   setWeather(data) {
     let newWeather = [];
     for (var i = 0; i < 9; i++) {
@@ -66,10 +70,11 @@ class App extends Component {
     this.setState({weather: newWeather});
   };
 
+  /* sets city state and sets previous history as input city */
   setLocation(input) {
     var newCity = input.target.elements.location.value;
-    this.setState({city: newCity});
-    this.render();
+    localStorage.setItem('previous', newCity);
+    this.setState({city: newCity}, this.getData());
   }
 
   componentDidMount() {
@@ -77,7 +82,7 @@ class App extends Component {
   }
 
   render() {
-    alert(this.state.city);
+    alert("render: " + this.state.city);  //problem! renders 4x everytime city changed
     return (
       <div className="App">
         <header className="App-header">
@@ -85,7 +90,7 @@ class App extends Component {
         </header>
         <Form entered={this.setLocation}/>
         {this.state.weather !== null?
-          <ThreeHours hourly={this.state.weather} startTom={this.getStartTom()}/>
+          <ThreeHours hourly={this.state.weather} startTom={this.getStartTom()} city={this.state.city}/>
           : 'enter state, country (e.g. Philadelphia, US)'}
       </div>
     );
