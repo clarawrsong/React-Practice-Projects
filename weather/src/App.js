@@ -7,12 +7,12 @@ class App extends Component {
 
   constructor() {
     super();
-    const lastVisit = localStorage.getItem('previous');
-    // alert('constructor')
+    // const lastVisit = localStorage.getItem('previous');
     this.state = {
       weather: null,
       units: 'imperial',
-      city: lastVisit ? lastVisit : '',
+      city: '',
+      // city: lastVisit ? lastVisit : '',
       input: ''
     };
 
@@ -72,9 +72,14 @@ class App extends Component {
 
   /* sets city state and sets previous history as input city */
   setLocation(input) {
+    input.preventDefault();
     var newCity = input.target.elements.location.value;
-    localStorage.setItem('previous', newCity);
-    this.setState({city: newCity}, this.getData());
+    // localStorage.setItem('previous', newCity);
+    this.setState({city: newCity});
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.city !== this.state.city) this.getData();
   }
 
   componentDidMount() {
@@ -82,7 +87,6 @@ class App extends Component {
   }
 
   render() {
-    alert("render: " + this.state.city);  //problem! renders 4x everytime city changed
     return (
       <div className="App">
         <header className="App-header">

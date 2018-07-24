@@ -13,7 +13,7 @@ class ThreeHours extends Component {
 
   render() {
     var today = this.props.hourly[0].time.day;
-    var tomorrow = this.props.hourly[this.props.startTom+1].time.day;
+    var tomorrow = this.props.hourly[this.props.startTom].time.day;
     return (
       <div>
       <h2>{this.props.city}</h2>
