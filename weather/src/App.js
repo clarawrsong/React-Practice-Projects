@@ -17,6 +17,8 @@ class App extends Component {
     };
 
     this.setLocation = this.setLocation.bind(this);
+    this.changeToC = this.changeToC.bind(this);
+    this.changeToF = this.changeToF.bind(this);
   }
 
   /* gets data from http request */
@@ -54,7 +56,8 @@ class App extends Component {
   setWeather(data) {
     let newWeather = [];
     for (var i = 0; i < 9; i++) {
-      var rainVol = (('rain' in data[i])&&('3h' in data[i].rain))? data[i].rain : '0';
+      var rainVol = (('rain' in data[i])&&('3h' in data[i].rain)) ?
+        data[i].rain["3h"].toFixed(2) : '0';
       var newForecast = {
         time: {
           day: data[i].dt_txt.substring(5,10),
@@ -76,15 +79,25 @@ class App extends Component {
     var newCity = input.target.elements.location.value;
     // localStorage.setItem('previous', newCity);
     this.setState({city: newCity});
-  }
+  };
+
+  changeToC() {
+    this.setState({units: 'metric'});
+  };
+
+  changeToF() {
+    this.setState({units: 'imperial'});
+  };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.city !== this.state.city) this.getData();
-  }
+    if ((prevState.city !== this.state.city) || (prevState.units !== this.state.units)) {
+      this.getData();
+    }
+  };
 
   componentDidMount() {
     this.getData();
-  }
+  };
 
   render() {
     return (
@@ -92,9 +105,11 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Clara&#39;s Weather App</h1>
         </header>
-        <Form entered={this.setLocation}/>
+        <Form entered={this.setLocation} units={this.state.units}
+          toC={this.changeToC} toF={this.changeToF}/>
         {this.state.weather !== null?
-          <ThreeHours hourly={this.state.weather} startTom={this.getStartTom()} city={this.state.city}/>
+          <ThreeHours hourly={this.state.weather} startTom={this.getStartTom()}
+            city={this.state.city}/>
           : 'enter state, country (e.g. Philadelphia, US)'}
       </div>
     );

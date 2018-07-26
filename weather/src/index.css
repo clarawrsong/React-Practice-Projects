@@ -15,3 +15,7 @@ dl {
 #hourCard {
   margin: 10px;
 }
+
+.selected {
+  background: #e8e4e1;
+}
