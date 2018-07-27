@@ -3,3 +3,4 @@
 Includes so far 
  - Photo Gallery
  - Weather App
+ - Calculator
