@@ -13,22 +13,22 @@ class Pad extends Component {
         <Button handleClick={this.props.numPress} name='1'/>
         <Button handleClick={this.props.numPress} name='2'/>
         <Button handleClick={this.props.numPress} name='3'/>
-        <Button handleClick={this.props.opPress} name='+'/>
+        <Button handleClick={this.props.opPress} name='/'/>
 
         <Button handleClick={this.props.numPress} name='4'/>
         <Button handleClick={this.props.numPress} name='5'/>
         <Button handleClick={this.props.numPress} name='6'/>
-        <Button handleClick={this.props.opPress} name='-'/>
+        <Button handleClick={this.props.opPress} name='*'/>
 
         <Button handleClick={this.props.numPress} name='7'/>
         <Button handleClick={this.props.numPress} name='8'/>
         <Button handleClick={this.props.numPress} name='9'/>
-        <Button handleClick={this.props.opPress} name='*'/>
+        <Button handleClick={this.props.opPress} name='-'/>
 
         <Button handleClick={this.props.numPress} name='0'/>
         <Button handleClick={this.props.decPress} name='.'/>
         <Button handleClick={this.props.equalPress} name='=' id='equal'/>
-        <Button handleClick={this.props.opPress} name='/'/>
+        <Button handleClick={this.props.opPress} name='+'/>
       </div>
     );
   }
